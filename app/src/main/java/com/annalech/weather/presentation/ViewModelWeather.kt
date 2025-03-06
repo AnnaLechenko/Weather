@@ -26,7 +26,6 @@ class ViewModelWeather: ViewModel() {
     init {
         //загрузка из сети : репозиторий --> экземпляр апи сервиса -> запрос
         loadWeather()
-
     }
 
     private fun loadWeather(){

@@ -11,6 +11,4 @@ interface ApiService {
     suspend fun getWeather(): Call<Weather>
 
 
-
-
 }

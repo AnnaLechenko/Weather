@@ -4,6 +4,12 @@
     >
     <uses-permission android:name="android.permission.INTERNET" />
 
+
+    <meta-data android:name="com.google.android.geo.API_KEY"
+        android:value="ZapBLqLu0CfFvX9JOCiOdg==dLX5OCOkU0w0qui4"/>
+
+
+
     <application
 
         android:allowBackup="true"
