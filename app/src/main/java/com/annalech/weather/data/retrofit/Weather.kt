@@ -6,15 +6,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Weather(
+    @SerialName("name") var name:String,
 
-    @SerialName("wind_speed"   ) var windSpeed   : Double,
-    @SerialName("temp"         ) var temp        : Int,
+    @SerialName("wind_kph"   ) var windSpeed   : Double,
+    @SerialName("temp_c"         ) var temp        : Int,
 
 
-    @SerialName("sunrise"      ) var sunrise     : Int,
-    @SerialName("sunset"       ) var sunset      : Int,
+    @SerialName("last_updated"      ) var last_updated     : Int,
+    @SerialName("humidity"       ) var humidity   : Int,
 
-    @SerialName("min_temp"     ) var minTemp     : Int,
-    @SerialName("max_temp"     ) var maxTemp     : Int
+
 
 )

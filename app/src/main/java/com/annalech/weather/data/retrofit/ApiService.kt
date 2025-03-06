@@ -6,8 +6,8 @@ import retrofit2.http.Headers
 
 interface ApiService {
 
-    @GET("weather?city=London")
-    @Headers("X-Api-Key:ZapBLqLu0CfFvX9JOCiOdg==dLX5OCOkU0w0qui4")
+    @GET("/current.json?key=9a2b4948241d480b9d8203545250603&q=Moscow")
+   // @Headers("X-Api-Key:9a2b4948241d480b9d8203545250603")
     suspend fun getWeather(): Call<Weather>
 
 

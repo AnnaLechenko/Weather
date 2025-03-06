@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
 
-    <meta-data android:name="com.google.android.geo.API_KEY"
-        android:value="ZapBLqLu0CfFvX9JOCiOdg==dLX5OCOkU0w0qui4"/>
+    <meta-data android:name="http://api.weatherapi.com/v1.API_KEY"
+        android:value="9a2b4948241d480b9d8203545250603"/>
 
 
 
