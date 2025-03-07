@@ -20,8 +20,10 @@ class MainActivity : AppCompatActivity() {
 
       viewModel.ld_Weather.observe(this, {
           it->
-          binding.tvCity.text = it.location.name
-          binding.tvTemperature.text = it.currentTemperature.temp_c.toString()
+          it?.let {
+              binding.tvCity.text = it.location.name
+              binding.tvTemperature.text = it.currentTemperature.temp_c.toString()
+          }
       })
 
 

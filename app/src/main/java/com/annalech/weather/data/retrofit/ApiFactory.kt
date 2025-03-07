@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiFactory {
     //    const val BASE_URL = "https://goweather.herokuapp.com/"
-    private const val BASE_URL = "http://api.weatherapi.com/"
+    private const val BASE_URL = "https://api.weatherapi.com/"
     private const val API = "ZapBLqLu0CfFvX9JOCiOdg==dLX5OCOkU0w0qui4"
 
     val logging = HttpLoggingInterceptor().apply {

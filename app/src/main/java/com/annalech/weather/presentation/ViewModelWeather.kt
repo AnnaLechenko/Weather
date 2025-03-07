@@ -38,21 +38,21 @@ class ViewModelWeather(application: Application): AndroidViewModel(application) 
     private fun loadWeather( apiServ: ApiService){
         viewModelScope.launch {
             try {
-                apiServ.getWeather("9a2b4948241d480b9d8203545250603","Moscow").enqueue(object : Callback<ResponseWeather> {
-                    //успешная загрузка обьекта из сети Response<Weather>
+              val response =   apiServ
+                    .getWeather("9a2b4948241d480b9d8203545250603","Moscow")
+                    .execute()
 
-
-                    override fun onResponse(call: Call<ResponseWeather>, response: Response<ResponseWeather>) {
-                        if (response.isSuccessful){
+                //успешная загрузка обьекта из сети Response<Weather>
+                if (response.isSuccessful){
                             Log.d("MY_TAG", "pагружен мой обьект в viewModel ${_ld_Weather.toString()}")
+                            Log.d("MY_TAG", "Загружен объект в ViewModel: ${response.body()}")
                             _ld_Weather.postValue(response.body())
-                        }
-                    }
 
-                    override fun onFailure(call: Call<ResponseWeather>, t: Throwable) {
-                        Log.d("MY_TAG","НЕ получен во вью getWeather Error Response: ${call.toString()} ")
-                    }
-                })
+                    }else{
+                    Log.d("MY_TAG", "Ошибка загрузки данных: ${response}")
+                }
+
+
             }catch (e:Exception){
                   Log.d("MY_TAG","ошибка загрузка из сети в инит блоке вью модели")
         }
