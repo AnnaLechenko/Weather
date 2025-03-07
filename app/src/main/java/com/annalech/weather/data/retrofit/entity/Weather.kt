@@ -1,9 +1,9 @@
-package com.annalech.weather.data.retrofit
+package com.annalech.weather.data.retrofit.entity
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-
+//another api
 @Serializable
 data class Weather(
     @SerialName("name") var name:String,
@@ -13,7 +13,7 @@ data class Weather(
 
 
     @SerialName("last_updated"      ) var last_updated     : Int,
-    @SerialName("humidity"       ) var humidity   : Int,
+    @SerialName("humidity"       ) var humidity   : Int
 
 
 

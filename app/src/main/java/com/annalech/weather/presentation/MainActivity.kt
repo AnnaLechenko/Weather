@@ -13,14 +13,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this)[ViewModelWeather::class.java]
+        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application))
+            .get( ViewModelWeather::class.java)
 
 
 
       viewModel.ld_Weather.observe(this, {
           it->
-          binding.tvCity.text = "Minsk"
-          binding.tvTemperature.text = it.temp.toString()
+          binding.tvCity.text = it.location.name
+          binding.tvTemperature.text = it.currentTemperature.temp_c.toString()
       })
 
 
