@@ -38,23 +38,24 @@ class ViewModelWeather(application: Application): AndroidViewModel(application) 
     private fun loadWeather( apiServ: ApiService){
         viewModelScope.launch {
             try {
-              val response =   apiServ
-                    .getWeather("9a2b4948241d480b9d8203545250603","Moscow")
-                    .execute()
+              val response = apiServ.getWeather("9a2b4948241d480b9d8203545250603", "Moscow")
+
 
                 //успешная загрузка обьекта из сети Response<Weather>
-                if (response.isSuccessful){
+                if(response.isSuccessful){
                             Log.d("MY_TAG", "pагружен мой обьект в viewModel ${_ld_Weather.toString()}")
                             Log.d("MY_TAG", "Загружен объект в ViewModel: ${response.body()}")
                             _ld_Weather.postValue(response.body())
 
                     }else{
                     Log.d("MY_TAG", "Ошибка загрузки данных: ${response}")
+                    Log.d("MY_TAG", "Ошибка загрузки данных: ${response.errorBody()}")
                 }
 
 
             }catch (e:Exception){
                   Log.d("MY_TAG","ошибка загрузка из сети в инит блоке вью модели")
+                Log.d("MY_TAG", "Ошибка загрузки из сети: ${e.message}")
         }
 
         }
