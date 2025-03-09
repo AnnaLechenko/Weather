@@ -1,10 +1,10 @@
 package com.annalech.weather.domain
 
-import com.annalech.weather.data.retrofit.entity.Weather
+import com.annalech.weather.data.retrofit.entity.ResponseWeather
 
 interface Repository {
 
-    fun getWeather( ): Weather
+    fun getWeather( ): ResponseWeather
 
     fun loadCity():String
 }

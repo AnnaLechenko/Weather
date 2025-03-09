@@ -1,10 +1,10 @@
 package com.annalech.weather.data.retrofit
 
-import com.annalech.weather.data.retrofit.entity.Weather
+import com.annalech.weather.data.retrofit.entity.ResponseWeather
 import com.annalech.weather.domain.Repository
 
 class RepositoryImpl:Repository {
-    override fun getWeather( ): Weather {
+    override fun getWeather( ): ResponseWeather {
         TODO()
     }
 

@@ -1,19 +1,21 @@
-package com.annalech.weather.presentation
+package com.annalech.weather.presentation.secondPage
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.annalech.weather.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class SecondPageActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
-    private lateinit var viewModel:ViewModelWeather
+    private lateinit var viewModel: ViewModelWeather
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application))
+        viewModel = ViewModelProvider(this, ViewModelFactory(application, ""))
             .get( ViewModelWeather::class.java)
 
 
@@ -28,5 +30,16 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+
+    companion object{
+        const val CITY = "city"
+
+        fun getIntent(context: Context, city:String): Intent {
+            val intent = Intent(context, SecondPageActivity::class.java)
+            intent.putExtra(CITY, city)
+            return intent
+        }
     }
 }
