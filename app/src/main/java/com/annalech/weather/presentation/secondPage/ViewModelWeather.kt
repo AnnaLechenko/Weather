@@ -13,7 +13,7 @@ import com.annalech.weather.data.retrofit.ApiService
 import com.annalech.weather.data.retrofit.entity.ResponseWeather
 import kotlinx.coroutines.launch
 
-class ViewModelWeather(application: Application,city:String): AndroidViewModel(application) {
+class ViewModelWeather(application: Application,val city:String): AndroidViewModel(application) {
     //ЗАИНЖЕКТИТЬ АПИ В РЕСУРСАХ И ПЕРЕДАВАТЬ ВО ВЬЮ ТОЛЬКО РЕПОЗИТОРИЙ
     val apiServ = ApiFactory.apiService
 
@@ -36,7 +36,7 @@ class ViewModelWeather(application: Application,city:String): AndroidViewModel(a
       val scope =   viewModelScope.launch {
             try {
               val response = apiServ.getWeather(
-                  cityName = "Minsk"
+                  cityName = city
               )
                 //успешная загрузка обьекта из сети Response<Weather>
                 if(response.isSuccessful){

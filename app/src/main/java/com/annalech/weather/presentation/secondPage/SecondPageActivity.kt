@@ -15,7 +15,10 @@ class SecondPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this, ViewModelFactory(application, ""))
+
+       val cityExtra = intent.getStringExtra(CITY)?: "London"
+
+        viewModel = ViewModelProvider(this, ViewModelFactory(application, cityExtra))
             .get( ViewModelWeather::class.java)
 
 

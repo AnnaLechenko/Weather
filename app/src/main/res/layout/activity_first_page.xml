@@ -14,13 +14,13 @@
         android:layout_height="wrap_content"
         android:text="@string/hello"
         android:gravity="center"
-        android:textSize="40sp"
+        android:textSize="60sp"
         android:layout_marginTop="150dp"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Узнай погоду в своём городе"
+        android:text="@string/title"
         android:gravity="center"
         android:textSize="26sp"
         android:layout_marginTop="36dp"
@@ -32,12 +32,12 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:textSize="20sp"
-        android:inputType="text"
+        android:inputType="textCapWords"
         android:textColor="#A29F9F"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
         android:layout_marginTop="20dp"
-        android:text="@string/inputCity"
+        android:hint="@string/inputCity"
         />
 
     <Button
@@ -45,9 +45,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/bn_title"
+
         android:textSize="20sp"
         android:layout_margin="20dp"
-        android:backgroundTint="#674BB3"
+        android:backgroundTint="#D925B2"
         />
 
 
