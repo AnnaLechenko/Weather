@@ -26,6 +26,30 @@
         android:layout_marginTop="36dp"
         />
 
+    <EditText
+        android:id="@+id/et_editCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="20sp"
+        android:inputType="text"
+        android:textColor="#A29F9F"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/inputCity"
+        />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bn_title"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        android:backgroundTint="#674BB3"
+        />
+
 
 </LinearLayout>
 
