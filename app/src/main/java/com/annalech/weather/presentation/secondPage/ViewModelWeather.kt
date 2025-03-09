@@ -1,15 +1,12 @@
 package com.annalech.weather.presentation.secondPage
 
 import android.app.Application
-import android.content.Context
-import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.annalech.weather.data.retrofit.ApiFactory
-import com.annalech.weather.data.retrofit.ApiService
 import com.annalech.weather.data.retrofit.entity.ResponseWeather
 import kotlinx.coroutines.launch
 
@@ -25,14 +22,11 @@ class ViewModelWeather(application: Application,val city:String): AndroidViewMod
 
 
     init {
-
             //загрузка из сети : репозиторий --> экземпляр апи сервиса -> запрос
-            loadWeather(apiServ)
-
-
+            loadWeather()
     }
 
-    private fun loadWeather( apiServ: ApiService){
+    private fun loadWeather(){
       val scope =   viewModelScope.launch {
             try {
               val response = apiServ.getWeather(
