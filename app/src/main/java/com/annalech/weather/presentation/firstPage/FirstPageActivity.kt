@@ -1,17 +1,13 @@
 package com.annalech.weather.presentation.firstPage
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.InputType
-import android.text.TextWatcher
-import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import com.annalech.weather.R
+
 import com.annalech.weather.databinding.ActivityFirstPageBinding
 import com.annalech.weather.presentation.secondPage.SecondPageActivity
-import kotlinx.coroutines.delay
+
 
 class FirstPageActivity : AppCompatActivity() {
     private lateinit var   binding:ActivityFirstPageBinding
@@ -40,13 +36,13 @@ class FirstPageActivity : AppCompatActivity() {
     private fun checkInfo( info:String):String{
        val city = info.trim()
             // Проверяем, что город состоит только из латинских букв
-            if(!city.matches("^[a-zA-Z]+$".toRegex())) {
+            if(!city.matches("^[a-zA-Z]+$".toRegex())){
                 // Если не соответствует условию, показываем тост
                 Toast.makeText(this,
                     "Город должен быть написан латиницей и не содержать чисел.",
                     Toast.LENGTH_SHORT).show()
                       binding.button.isEnabled = false
-            }else if (city.length < MIN_LENGHT_CITY) {
+            }else if (city.length <= MIN_LENGHT_CITY) {
                 // Если не соответствует условию, показываем тост
                 binding.button.isEnabled = false
                 Toast.makeText(this,
@@ -62,7 +58,7 @@ class FirstPageActivity : AppCompatActivity() {
 
 
     companion object{
-        private const val MIN_LENGHT_CITY = 3
+        private const val MIN_LENGHT_CITY = 2
     }
 }
 

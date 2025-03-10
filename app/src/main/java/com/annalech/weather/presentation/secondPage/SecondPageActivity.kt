@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.annalech.weather.R
 import com.annalech.weather.databinding.ActivityMainBinding
 
 class SecondPageActivity : AppCompatActivity() {
@@ -27,7 +28,11 @@ class SecondPageActivity : AppCompatActivity() {
           it->
           it?.let {
               binding.tvCity.text = it.location.name
-              binding.tvTemperature.text = it.currentTemperature.temp_c.toString()
+             val temp =  it.currentTemperature.temp_c
+            binding.tvTemperature.text =   checkTemperature(temp)
+          }
+          if (it.location.name == null){
+              binding.errorCity.text =  resources.getString(R.string.error)
           }
       })
 
@@ -35,6 +40,16 @@ class SecondPageActivity : AppCompatActivity() {
 
     }
 
+
+
+
+    private fun checkTemperature(t : Double):String{
+        if (t>0){
+            return  "+${t.toInt()}C"
+        } else {
+            return  "${t.toInt()}C"
+        }
+    }
 
     companion object{
         const val CITY = "city"
