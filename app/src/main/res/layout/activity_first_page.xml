@@ -33,7 +33,7 @@
         android:ems="10"
         android:textSize="20sp"
         android:inputType="textCapWords"
-        android:textColor="#A29F9F"
+        android:textColor="#000000"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
         android:layout_marginTop="20dp"
