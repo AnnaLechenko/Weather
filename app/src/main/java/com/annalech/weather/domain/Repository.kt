@@ -1,10 +1,11 @@
 package com.annalech.weather.domain
 
 import com.annalech.weather.data.retrofit.entity.ResponseWeather
+import retrofit2.Response
 
 interface Repository {
 
-    fun getWeather( ): ResponseWeather
+    suspend fun getWeatherResponse(city:String ): Response<ResponseWeather>
 
-    fun loadCity():String
+
 }

@@ -6,13 +6,15 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.annalech.weather.data.retrofit.ApiFactory
+import com.annalech.weather.data.retrofit.RepositoryImpl
 import com.annalech.weather.data.retrofit.entity.ResponseWeather
+import com.annalech.weather.domain.GetWeatherResponse_UseCase
 import kotlinx.coroutines.launch
 
 class ViewModelWeather(application: Application,val city:String): AndroidViewModel(application) {
-    //ЗАИНЖЕКТИТЬ АПИ В РЕСУРСАХ И ПЕРЕДАВАТЬ ВО ВЬЮ ТОЛЬКО РЕПОЗИТОРИЙ
-    val apiServ = ApiFactory.apiService
+
+    val repository = RepositoryImpl(application)
+    val getWeatherResponse_UC = GetWeatherResponse_UseCase(repository)
 
 
     private val _ld_Weather = MutableLiveData<ResponseWeather>()
@@ -29,9 +31,8 @@ class ViewModelWeather(application: Application,val city:String): AndroidViewMod
     private fun loadWeather(){
       val scope =   viewModelScope.launch {
             try {
-              val response = apiServ.getWeather(
-                  cityName = city
-              )
+              val response =  getWeatherResponse_UC(city)
+
                 //успешная загрузка обьекта из сети Response<Weather>
                 if(response.isSuccessful){
                             Log.d("MY_TAG", "pагружен мой обьект в viewModel ${_ld_Weather.toString()}")
