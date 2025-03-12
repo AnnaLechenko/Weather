@@ -25,14 +25,22 @@ class FirstPageActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener {
            val info = binding.etEditCity.text.toString()
-           val city =  checkInfo(info)
-           startActivity( SecondPageActivity.getIntent(this, city)) //запуск второго окна
+            if(info.length< MIN_LENGHT_CITY){
+                Toast.makeText(
+                    this ,
+                    "Название города должно состоять из 2 и более символов",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }else{
+                startActivity( SecondPageActivity.getIntent(this,info)) //запуск второго окна
+            }
+
         }
 
     }
 
 
-    //добавить проверку на введенные данные и вывести тост если данные не верны можно и во вью но тогда тост через лив дату
+    //проверка данных из строки ввода на наличие других символов, кроме латинских
     private fun checkInfo( info:String):String{
        val city = info.trim()
             // Проверяем, что город состоит только из латинских букв
@@ -42,12 +50,12 @@ class FirstPageActivity : AppCompatActivity() {
                     "Город должен быть написан латиницей и не содержать чисел.",
                     Toast.LENGTH_SHORT).show()
                       binding.button.isEnabled = false
-            }else if (city.length <= MIN_LENGHT_CITY) {
-                // Если не соответствует условию, показываем тост
-                binding.button.isEnabled = false
-                Toast.makeText(this,
-                    "Город должен быть из 2 и более символов.",
-                    Toast.LENGTH_SHORT).show()
+//            }else if (city.length <= MIN_LENGHT_CITY) {
+//                // Если не соответствует условию, показываем тост
+//                binding.button.isEnabled = false
+//                Toast.makeText(this,
+//                    "Город должен быть из 2 и более символов.",
+//                    Toast.LENGTH_SHORT).show()
 
             } else{
                 binding.button.isEnabled = true
@@ -58,7 +66,7 @@ class FirstPageActivity : AppCompatActivity() {
 
 
     companion object{
-        private const val MIN_LENGHT_CITY = 2
+        private const val MIN_LENGHT_CITY = 3
     }
 }
 
