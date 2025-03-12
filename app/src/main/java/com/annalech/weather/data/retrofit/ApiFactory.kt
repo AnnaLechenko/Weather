@@ -1,5 +1,9 @@
 package com.annalech.weather.data.retrofit
 
+import com.annalech.weather.data.retrofit.entity.ResponseWeather
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -8,20 +12,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiFactory {
     //    const val BASE_URL = "https://goweather.herokuapp.com/"
-    const val BASE_URL = "https://api.api-ninjas.com/v1/"
-    const val API = "ZapBLqLu0CfFvX9JOCiOdg==dLX5OCOkU0w0qui4"
+    private const val BASE_URL = "https://api.weatherapi.com/"
+    const val API = "9a2b4948241d480b9d8203545250603"
 
     val logging = HttpLoggingInterceptor().apply {
         setLevel(HttpLoggingInterceptor.Level.BODY)
     }
-
     val okHttp = OkHttpClient.Builder().addInterceptor(logging).build()
+
+
+    val contentType = "application/json".toMediaType()
 
     val apiService = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(okHttp)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(Json.asConverterFactory(contentType))
         .build()
         .create(ApiService::class.java)
-
 }

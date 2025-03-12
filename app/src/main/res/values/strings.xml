@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Weather</string>
+    <string name="hello">Добро пожаловать!</string>
+    <string name="inputCity">Введите свой город на латинице</string>
+    <string name="bn_title">Узнать погоду</string>
+    <string name="title">Узнай погоду в своём городе</string>
+    <string name="City">Город не найден</string>
+    <string name="error">Попробуй найти свой город снова</string>
 </resources>
