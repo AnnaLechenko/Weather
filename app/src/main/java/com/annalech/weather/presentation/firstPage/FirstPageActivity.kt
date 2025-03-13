@@ -39,7 +39,6 @@ class FirstPageActivity : AppCompatActivity() {
 
     }
 
-
     //проверка данных из строки ввода на наличие других символов, кроме латинских
     private fun checkInfo( info:String):String{
        val city = info.trim()
