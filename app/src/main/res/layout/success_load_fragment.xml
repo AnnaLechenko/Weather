@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/success_load_fr"
+    android:background="@drawable/sunny_bg"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.secondPage.SecondPageActivity">
+
+    <TextView
+        android:id="@+id/tvCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:layout_marginTop="150dp"
+        tools:text="City" />
+    <TextView
+        android:id="@+id/tvTemperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        tools:text="+28C" />
+
+    <TextView
+        android:id="@+id/tvDescrription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        tools:text="Cloudy"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
+
+
+    <TextView
+        android:id="@+id/tvWind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        tools:text="10 km/h"
+        android:gravity="center"
+        android:textColor="@color/black"
+
+
+        />
+
+
+    <TextView
+        android:id="@+id/tvAdvice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        tools:text="Advice"
+        android:gravity="center"
+        android:layout_marginTop="180sp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textColor="@color/black"
+        />
+
+
+</LinearLayout>
+
