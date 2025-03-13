@@ -23,6 +23,8 @@ class ViewModelWeather(application: Application,val city:String): AndroidViewMod
 
 
 
+
+
     init {
             //загрузка из сети : репозиторий --> экземпляр апи сервиса -> запрос
             loadWeather()
