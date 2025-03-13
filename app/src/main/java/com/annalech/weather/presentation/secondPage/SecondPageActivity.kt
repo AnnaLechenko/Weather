@@ -8,33 +8,39 @@ import androidx.lifecycle.ViewModelProvider
 import com.annalech.weather.R
 import com.annalech.weather.databinding.ActivityMainBinding
 
-class SecondPageActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding
+class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
+
     private lateinit var viewModel: ViewModelWeather
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-       val cityExtra = intent.getStringExtra(CITY)?: "London"
 
+        val cityExtra = intent.getStringExtra(CITY)?: "London"
         viewModel = ViewModelProvider(this, ViewModelFactory(application, cityExtra))
             .get( ViewModelWeather::class.java)
 
 
 
-      viewModel.ld_Weather.observe(this, {
-          it->
-          it?.let {
-              binding.tvCity.text = it.location.name
-             val temp =  it.currentTemperature.temp_c
-            binding.tvTemperature.text =   checkTemperature(temp)
-          }
-          if (it.location.name == null){
-              binding.errorCity.text =  resources.getString(R.string.error)
-          }
-      })
+        viewModel.ld_Weather.observe(this, {
+                it->
+            it?.let {
+                if (savedInstanceState==null){
+                    val fragment  =if(it.location.name == null){
+                        ErrorLoadFragment()
+                    } else{
+                        SuccessLoadFragment()
+                    }
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .commit()
+                }
+
+            }
+            //   binding.errorCity.text =  resources.getString(R.string.error)
+
+        })
 
 
 
