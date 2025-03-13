@@ -21,6 +21,10 @@ class ViewModelWeather(application: Application,val city:String): AndroidViewMod
     val ld_Weather: LiveData<ResponseWeather>
         get()= _ld_Weather
 
+    private val _ld_error = MutableLiveData<Boolean>()
+    val ld_error: LiveData<Boolean>
+        get()= _ld_error
+
 
 
 
@@ -41,14 +45,17 @@ class ViewModelWeather(application: Application,val city:String): AndroidViewMod
                             Log.d("MY_TAG", "Загружен объект в ViewModel: ${response.body()}")
 
                             _ld_Weather.postValue(response.body())
+                             _ld_error.postValue(false)
 
                     }else{
+                    _ld_error.postValue(true)
                     Log.d("MY_TAG", "Ошибка загрузки данных: ${response}")
                     Log.d("MY_TAG", "Ошибка загрузки данных: ${response.errorBody()}")
                 }
 
 
             }catch (e:Exception){
+                _ld_error.postValue(true)
                   Log.d("MY_TAG","ошибка загрузка из сети в инит блоке вью модели")
                 Log.d("MY_TAG", "Ошибка загрузки из сети: ${e.message}")
             }

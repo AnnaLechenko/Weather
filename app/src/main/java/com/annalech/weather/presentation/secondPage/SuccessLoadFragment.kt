@@ -11,6 +11,7 @@ class SuccessLoadFragment  : Fragment(R.layout.success_load_fragment){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = SuccessLoadFragmentBinding.bind(view)
+
     }
 
     override fun onDestroyView() {
