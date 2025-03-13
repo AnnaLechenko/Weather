@@ -23,24 +23,26 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
 
 
 
-        viewModel.ld_Weather.observe(this, {
-                it->
+        viewModel.ld_Weather.observe(this) { it ->
             it?.let {
-                if (savedInstanceState==null){
-                    val fragment  =if(it.location.name == null){
-                        ErrorLoadFragment()
-                    } else{
-                        SuccessLoadFragment()
-                    }
+                if (savedInstanceState == null) {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment)
+                        .replace(R.id.fragment_container, SuccessLoadFragment())
                         .commit()
                 }
-
             }
-            //   binding.errorCity.text =  resources.getString(R.string.error)
+        }
 
-        })
+        viewModel.ld_error.observe(this){error->
+            if (error){
+                if (savedInstanceState==null){
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container,ErrorLoadFragment())
+                        .commit()
+
+                }
+            }
+        }
 
 
 
