@@ -11,6 +11,7 @@ import com.annalech.weather.databinding.ActivityMainBinding
 class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
 
     private lateinit var viewModel: ViewModelWeather
+  lateinit var successLoadFragment:SuccessLoadFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +27,13 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
         viewModel.ld_Weather.observe(this) { it ->
             it?.let {
                 if (savedInstanceState == null) {
+                    successLoadFragment = SuccessLoadFragment().apply {
+                       arguments =  Bundle().apply {
+                           putParcelable(WEATHER_RESPONSE, it )
+                       }
+                    }
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, SuccessLoadFragment())
+                        .replace(R.id.fragment_container, successLoadFragment)
                         .commit()
                 }
             }
@@ -61,6 +67,7 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
 
     companion object{
         const val CITY = "city"
+        const val WEATHER_RESPONSE = "weather"
 
         fun getIntent(context: Context, city:String): Intent {
             val intent = Intent(context, SecondPageActivity::class.java)
