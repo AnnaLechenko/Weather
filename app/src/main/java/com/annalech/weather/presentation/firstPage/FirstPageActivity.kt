@@ -1,6 +1,7 @@
 package com.annalech.weather.presentation.firstPage
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
@@ -32,6 +33,7 @@ class FirstPageActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }else{
+
                 startActivity( SecondPageActivity.getIntent(this,info)) //запуск второго окна
             }
 

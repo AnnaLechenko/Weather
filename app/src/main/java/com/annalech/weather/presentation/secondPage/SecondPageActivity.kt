@@ -3,9 +3,12 @@ package com.annalech.weather.presentation.secondPage
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.annalech.weather.R
+import com.annalech.weather.databinding.ActivityFirstPageBinding
 import com.annalech.weather.databinding.ActivityMainBinding
 
 class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
@@ -14,10 +17,11 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
   lateinit var successLoadFragment:SuccessLoadFragment
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        showLoadBar()
         val cityExtra = intent.getStringExtra(CITY)?: "London"
         viewModel = ViewModelProvider(this, ViewModelFactory(application, cityExtra))
             .get( ViewModelWeather::class.java)
@@ -35,6 +39,8 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, successLoadFragment)
                         .commit()
+
+                  //  unshowLoadBar()
                 }
             }
         }
@@ -46,6 +52,8 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
                         .replace(R.id.fragment_container,ErrorLoadFragment())
                         .commit()
 
+                //    unshowLoadBar()
+
                 }
             }
         }
@@ -54,16 +62,13 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
 
     }
 
-
-
-
-    private fun checkTemperature(t : Double):String{
-        if (t>0){
-            return  "+${t.toInt()}C"
-        } else {
-            return  "${t.toInt()}C"
-        }
+   private fun showLoadBar(){
+     //  progressBar.visibility = View.VISIBLE
+   }
+    private fun unshowLoadBar(){
+      //  progressBar.visibility = View.GONE
     }
+
 
     companion object{
         const val CITY = "city"
