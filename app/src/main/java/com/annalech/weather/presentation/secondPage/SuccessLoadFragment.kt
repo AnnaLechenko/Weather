@@ -48,47 +48,29 @@ class SuccessLoadFragment  : Fragment(R.layout.success_load_fragment){
     }
 
 
-    private fun chooseAdvice(temp: Int, wind:Int, humdidity: Int){
+    private fun chooseAdvice(temp: Int, wind:Int, humidity: Int){
        binding?.let {
-           if (temp>30 && humdidity>50){
-                it.tvAdvice.text = "Аномальная жара.\nСтоит охладиться."
-           }
-           if (temp > 20 && temp < 30 && humdidity<50){
-               it.tvAdvice.text = "Прексрасная погода для прогулки."
-           }
-           if (temp > 16 && temp < 30 && humdidity>60){
-               it.tvAdvice.text = "Ожидается дождь.\nПрихвати с собой зонт."
-               it.successLoadFr.setBackgroundResource(R.drawable.rain_bg)
-           }
-           if (temp > 0 && temp < 15 && humdidity>60 ){
-               it.tvAdvice.text = "Ожидается дождь.\nПрихвати с собой зонт."
-               it.successLoadFr.setBackgroundResource(R.drawable.rain_bg)
-           }
-           if (temp > 0 && temp < 15 && wind>20 ){
-               it.tvAdvice.text = "Ожидается сильный ветер.\nБудьте осторожны."
-           }
-           if (temp < 0 && temp >-10 && wind>20 ){
-               it.tvAdvice.text = "На улице холодный ветер.\nПрихватите с собой теплый шарф."
-               it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
-           }
-           if (temp < 0 && temp >-10  && humdidity>50 ){
-               it.tvAdvice.text = "Ожидается мокрый снег"
-               it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
-           }
-           if (temp<-10){
-               it.tvAdvice.text = "На улице мороз.\nПрихватите термос горячего чаю"
-               it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
-           }
-           if (temp<-20){
-               it.tvAdvice.text = "На улице мороз.\nОставайтесь дома."
-               it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
-           }
-           if (temp == 0  && humdidity>50 ){
-               it.tvAdvice.text = "Ожидается мокрый снег"
-               it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
-           }
-           else{
-               it.tvAdvice.text = "Хороший день!"
+           when {
+               temp > 30 && humidity > 50 -> it.tvAdvice.text = "Аномальная жара.\nСтоит охладиться."
+               temp in 20..30 && humidity < 50 -> it.tvAdvice.text = "Прекрасная погода для прогулки."
+               temp in 16..30 && humidity > 60 -> {
+                   it.tvAdvice.text = "Ожидается дождь.\nПрихвати с собой зонт."
+                   it.successLoadFr.setBackgroundResource(R.drawable.rain_bg)
+               }
+               temp in 0..15 && humidity > 60 -> {
+                   it.tvAdvice.text = "Ожидается дождь.\nПрихвати с собой зонт."
+                   it.successLoadFr.setBackgroundResource(R.drawable.rain_bg)
+               }
+               temp in 0..15 && wind > 20 -> it.tvAdvice.text = "Ожидается сильный ветер.\nБудьте осторожны."
+               temp in -10..0 && wind > 20 -> {
+                   it.tvAdvice.text = "На улице холодный ветер.\nПрихватите с собой теплый шарф."
+                   it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
+               }
+               temp < -10 -> {
+                   it.tvAdvice.text = "На улице мороз.\nОставайтесь дома."
+                   it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
+               }
+               else -> it.tvAdvice.text = "Хороший день!"
            }
        }
 
