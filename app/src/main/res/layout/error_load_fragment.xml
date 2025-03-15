@@ -33,6 +33,6 @@
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:textColor="#1691BE"
-        tools:text="@string/error"
+        android:text="@string/error"
         />
 </LinearLayout>

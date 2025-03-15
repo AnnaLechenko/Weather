@@ -15,13 +15,16 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
 
     private lateinit var viewModel: ViewModelWeather
   lateinit var successLoadFragment:SuccessLoadFragment
+    private lateinit var progressBar: ProgressBar
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        progressBar = findViewById(R.id.progressBar)
         showLoadBar()
+
         val cityExtra = intent.getStringExtra(CITY)?: "London"
         viewModel = ViewModelProvider(this, ViewModelFactory(application, cityExtra))
             .get( ViewModelWeather::class.java)
@@ -40,7 +43,7 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
                         .replace(R.id.fragment_container, successLoadFragment)
                         .commit()
 
-                  //  unshowLoadBar()
+                    unshowLoadBar()
                 }
             }
         }
@@ -52,7 +55,7 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
                         .replace(R.id.fragment_container,ErrorLoadFragment())
                         .commit()
 
-                //    unshowLoadBar()
+                   unshowLoadBar()
 
                 }
             }
@@ -63,10 +66,10 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
    private fun showLoadBar(){
-     //  progressBar.visibility = View.VISIBLE
+      progressBar.visibility = View.VISIBLE
    }
     private fun unshowLoadBar(){
-      //  progressBar.visibility = View.GONE
+       progressBar.visibility = View.GONE
     }
 
 

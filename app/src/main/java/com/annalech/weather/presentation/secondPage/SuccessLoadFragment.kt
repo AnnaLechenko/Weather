@@ -66,6 +66,10 @@ class SuccessLoadFragment  : Fragment(R.layout.success_load_fragment){
                    it.tvAdvice.text = "На улице холодный ветер.\nПрихватите с собой теплый шарф."
                    it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
                }
+               temp in -10..0 && humidity > 60 -> {
+                   it.tvAdvice.text = "На улице холодно.\nОжидается мокрый снег."
+                   it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
+               }
                temp < -10 -> {
                    it.tvAdvice.text = "На улице мороз.\nОставайтесь дома."
                    it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
