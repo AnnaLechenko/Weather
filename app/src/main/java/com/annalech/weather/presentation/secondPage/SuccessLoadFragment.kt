@@ -1,14 +1,18 @@
 package com.annalech.weather.presentation.secondPage
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.annalech.weather.R
 import com.annalech.weather.data.retrofit.entity.ResponseWeather
 import com.annalech.weather.databinding.SuccessLoadFragmentBinding
 
 class SuccessLoadFragment  : Fragment(R.layout.success_load_fragment){
-    private var binding: SuccessLoadFragmentBinding? = null
+    private var _binding: SuccessLoadFragmentBinding ?= null
+    private val binding:  SuccessLoadFragmentBinding
+        get() = _binding?: throw RuntimeException("SuccessLoadFragmentBinding is null")
     private lateinit var argument: ResponseWeather
 
 ///get city
@@ -20,69 +24,77 @@ class SuccessLoadFragment  : Fragment(R.layout.success_load_fragment){
         super.onCreate(savedInstanceState)
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = SuccessLoadFragmentBinding.inflate(
+            inflater, container, false
+        )
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = SuccessLoadFragmentBinding.bind(view)
-        binding?.let {
-            val temperature = argument.currentTemperature.temp_c.toInt()
+
+
+            val temp = argument.currentTemperature.temp_c.toInt()
             val wind = argument.currentTemperature.wind_kph.toInt()
             val humidity = argument.currentTemperature.humidity
 
-            it.tvTemperature.text = if(temperature > 0){
-                                       "+${temperature.toString()}°C"
+            binding.tvTemperature.text = if(temp  > 0){
+                                       "+${temp.toString()}°C"
                                     } else {
-                                        "${temperature.toString()}°C"
+                                        "${temp.toString()}°C"
                                     }
 
-            it.tvCity.text = "${argument.location.country}/${argument.location.name}"
-            it.tvWind.text = "Ветер ${wind.toString()} км/час"
-            it.tvHumidity.text =  "Влажность ${humidity.toString()} %"
-            chooseAdvice(temperature, wind, humidity)
-        }
-    }
+            binding.tvCity.text = "${argument.location.country}/${argument.location.name}"
+            binding.tvWind.text = "Ветер ${wind.toString()} км/час"
+            binding.tvHumidity.text =  "Влажность ${humidity.toString()} %"
 
+
+       chooseAdvice(temp,wind,humidity)
+    }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
 
 
-    private fun chooseAdvice(temp: Int, wind:Int, humidity: Int){
-       binding?.let {
-           when {
-               temp > 30 && humidity > 50 -> it.tvAdvice.text = "Аномальная жара.\nСтоит охладиться."
-               temp in 20..30 && humidity < 50 -> it.tvAdvice.text = "Прекрасная погода для прогулки."
-               temp in 16..30 && humidity > 60 -> {
-                   it.tvAdvice.text = "Ожидается дождь.\nПрихвати с собой зонт."
-                   it.successLoadFr.setBackgroundResource(R.drawable.rain_bg)
-               }
-               temp in 0..15 && humidity > 60 -> {
-                   it.tvAdvice.text = "Ожидается дождь.\nПрихвати с собой зонт."
-                   it.successLoadFr.setBackgroundResource(R.drawable.rain_bg)
-               }
-               temp in 0..15 && wind > 20 -> it.tvAdvice.text = "Ожидается сильный ветер.\nБудьте осторожны."
-               temp in -10..0 && wind > 20 -> {
-                   it.tvAdvice.text = "На улице холодный ветер.\nПрихватите с собой теплый шарф."
-                   it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
-               }
-               temp in -10..0 && humidity > 60 -> {
-                   it.tvAdvice.text = "На улице холодно.\nОжидается мокрый снег."
-                   it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
-               }
-               temp < -10 -> {
-                   it.tvAdvice.text = "На улице мороз.\nОставайтесь дома."
-                   it.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
-               }
-               else -> it.tvAdvice.text = "Хороший день!"
-           }
-       }
 
+private fun chooseAdvice(temp:Int, wind:Int, humidity:Int){
+    when {
+        temp > 30 && humidity > 50 -> binding.tvAdvice.text = "Аномальная жара.\nСтоит охладиться."
+        temp in 20..30 && humidity < 50 -> binding.tvAdvice.text = "Прекрасная погода для прогулки."
+        temp in 16..30 && humidity > 60 -> {
+            binding.tvAdvice.text = "Ожидается дождь.\nПрихвати с собой зонт."
+            binding.successLoadFr.setBackgroundResource(R.drawable.rain_bg)
+        }
+        temp in 0..15 && humidity > 60 -> {
+            binding.tvAdvice.text = "Ожидается дождь.\nПрихвати с собой зонт."
+            binding.successLoadFr.setBackgroundResource(R.drawable.rain_bg)
+        }
+        temp in 0..15 && wind > 20 -> binding.tvAdvice.text = "Ожидается сильный ветер.\nБудьте осторожны."
+        temp in -10..0 && wind > 20 -> {
+            binding.tvAdvice.text = "На улице холодный ветер.\nПрихватите с собой теплый шарф."
+            binding.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
+        }
+        temp in -10..0 && humidity > 60 -> {
+            binding.tvAdvice.text = "На улице холодно.\nОжидается мокрый снег."
+            binding.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
+        }
+        temp < -10 -> {
+            binding.tvAdvice.text = "На улице мороз.\nОставайтесь дома."
+            binding.successLoadFr.setBackgroundResource(R.drawable.winter_bg)
+        }
+        else -> binding.tvAdvice.text = "Хороший день!"
     }
+}
+
 
     companion object{
         const val WEATHER_RESPONSE = "weather"
-
-
     }
 }
