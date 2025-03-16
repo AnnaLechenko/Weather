@@ -14,7 +14,6 @@ import com.annalech.weather.databinding.ActivityMainBinding
 class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
 
     private lateinit var viewModel: ViewModelWeather
-  lateinit var successLoadFragment:SuccessLoadFragment
     private lateinit var progressBar: ProgressBar
 
 
@@ -34,15 +33,9 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
         viewModel.ld_Weather.observe(this) { it ->
             it?.let {
                 if (savedInstanceState == null) {
-                    successLoadFragment = SuccessLoadFragment().apply {
-                       arguments =  Bundle().apply {
-                           putParcelable(WEATHER_RESPONSE, it )
-                       }
-                    }
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, successLoadFragment)
+                        .replace(R.id.fragment_container, SuccessLoadFragment.newInstanse(it))
                         .commit()
-
                     unshowLoadBar()
                 }
             }

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.annalech.weather.R
 import com.annalech.weather.data.retrofit.entity.ResponseWeather
 import com.annalech.weather.databinding.SuccessLoadFragmentBinding
+import com.annalech.weather.presentation.secondPage.SecondPageActivity.Companion
 
 class SuccessLoadFragment  : Fragment(R.layout.success_load_fragment){
     private var _binding: SuccessLoadFragmentBinding ?= null
@@ -67,6 +68,7 @@ class SuccessLoadFragment  : Fragment(R.layout.success_load_fragment){
 private fun chooseAdvice(temp:Int, wind:Int, humidity:Int){
     when {
         temp > 30 && humidity > 50 -> binding.tvAdvice.text = "Аномальная жара.\nСтоит охладиться."
+        temp>30 && humidity <50 -> binding.tvAdvice.text = "Сегодня жарко.\nСтоит охладиться."
         temp in 20..30 && humidity < 50 -> binding.tvAdvice.text = "Прекрасная погода для прогулки."
         temp in 16..30 && humidity > 60 -> {
             binding.tvAdvice.text = "Ожидается дождь.\nПрихвати с собой зонт."
@@ -96,5 +98,12 @@ private fun chooseAdvice(temp:Int, wind:Int, humidity:Int){
 
     companion object{
         const val WEATHER_RESPONSE = "weather"
+        fun newInstanse(response: ResponseWeather): SuccessLoadFragment{
+            return SuccessLoadFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable(WEATHER_RESPONSE, response )
+                }
+            }
+        }
     }
 }
