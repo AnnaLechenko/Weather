@@ -38,7 +38,6 @@ class ViewModelWeather(application: Application,val city:String): AndroidViewMod
       val scope =   viewModelScope.launch {
             try {
               val response =  getWeatherResponse_UC(city)
-
                 //успешная загрузка обьекта из сети Response<Weather>
                 if(response.isSuccessful){
                             Log.d("MY_TAG", "pагружен мой обьект в viewModel ${_ld_Weather.toString()}")
