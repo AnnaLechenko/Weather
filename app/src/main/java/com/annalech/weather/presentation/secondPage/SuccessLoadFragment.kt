@@ -18,7 +18,7 @@ class SuccessLoadFragment  : Fragment(R.layout.success_load_fragment){
 
 ///get city
     override fun onCreate(savedInstanceState: Bundle?) {
-    setRetainInstance(true)
+
 
         requireArguments().getParcelable<ResponseWeather>(WEATHER_RESPONSE)?.let {
             it->
