@@ -1,63 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.secondPage.SecondPageActivity">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/first_page_bg"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".presentation.secondPage.SecondPageActivity">
 
-    <TextView
-        android:id="@+id/tvCity"
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        tools:visibility="visible" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="100dp"
-        android:textSize="40sp"
-        android:text="@string/City"
-        android:textColor="@color/black"
-        />
-
-     <TextView
-         android:id="@+id/error_city"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:gravity="center"
-        tools:text="@string/error"
+        android:layout_height="match_parent"
          />
-    <TextView
-        android:id="@+id/tvTemperature"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="90sp"
-      tools:text="+28C"
-        android:gravity="center"
-        android:textColor="@color/black"
-        />
-
-    <TextView
-        android:id="@+id/tvDescrription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        tools:text="Cloudy"
-        android:gravity="center"
-        android:textColor="@color/black"
-        />
-
-
-    <TextView
-        android:id="@+id/tvWind"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-       tools:text="10 km/h"
-        android:gravity="center"
-        android:textColor="@color/black"
-        />
-
-
-
-
 </LinearLayout>

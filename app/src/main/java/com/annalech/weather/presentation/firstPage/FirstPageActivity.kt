@@ -1,6 +1,7 @@
 package com.annalech.weather.presentation.firstPage
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
@@ -32,6 +33,7 @@ class FirstPageActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }else{
+
                 startActivity( SecondPageActivity.getIntent(this,info)) //запуск второго окна
             }
 
@@ -39,10 +41,9 @@ class FirstPageActivity : AppCompatActivity() {
 
     }
 
-
     //проверка данных из строки ввода на наличие других символов, кроме латинских
     private fun checkInfo( info:String):String{
-       val city = info.trim()
+         val city = info.trim()
             // Проверяем, что город состоит только из латинских букв
             if(!city.matches("^[a-zA-Z]+$".toRegex())){
                 // Если не соответствует условию, показываем тост
@@ -50,13 +51,6 @@ class FirstPageActivity : AppCompatActivity() {
                     "Город должен быть написан латиницей и не содержать чисел.",
                     Toast.LENGTH_SHORT).show()
                       binding.button.isEnabled = false
-//            }else if (city.length <= MIN_LENGHT_CITY) {
-//                // Если не соответствует условию, показываем тост
-//                binding.button.isEnabled = false
-//                Toast.makeText(this,
-//                    "Город должен быть из 2 и более символов.",
-//                    Toast.LENGTH_SHORT).show()
-
             } else{
                 binding.button.isEnabled = true
             }
