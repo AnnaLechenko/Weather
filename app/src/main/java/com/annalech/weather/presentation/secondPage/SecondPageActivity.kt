@@ -36,8 +36,8 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, SuccessLoadFragment.newInstanse(it))
                         .commit()
-                    unshowLoadBar()
                 }
+                unshowLoadBar()
             }
         }
 
@@ -47,10 +47,8 @@ class SecondPageActivity : AppCompatActivity(R.layout.activity_main) {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container,ErrorLoadFragment())
                         .commit()
-
-                   unshowLoadBar()
-
                 }
+                unshowLoadBar()
             }
         }
 
