@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class ViewModelWeather(application: Application,val city:String): AndroidViewModel(application) {
 
-    val repository = RepositoryImpl(application)
+    val repository = RepositoryImpl()
     val getWeatherResponse_UC = GetWeatherResponse_UseCase(repository)
 
 
